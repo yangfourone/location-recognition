@@ -1,0 +1,13 @@
+# Location Recognition Keras
+.idea
+.DS_Store
+pyvenv.cfg
+
+dataset
+Include
+Instructions
+Lib
+logs
+model
+old code
+Scripts
