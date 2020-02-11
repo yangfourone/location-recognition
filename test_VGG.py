@@ -1,17 +1,22 @@
 from tensorflow.python.keras.models import load_model
 from tensorflow.python.keras.preprocessing import image
 import sys
+import os.path
 import numpy as np
 
 # 從參數讀取圖檔路徑
-files = sys.argv[1:]
+files = []
+path = sys.argv[1:]
+fileName = os.listdir(path[0])
+for name in fileName:
+    files.append(path[0] + '/' + name)
 
 # 載入訓練好的模型
-net = load_model('model/model-vgg16-final.h5')
+net = load_model('model/EE7F_model-vgg16-final.h5')
 
-cls_list = ['P0_d000', 'P0_d090', 'P0_d180', 'P0_d270', 'P1_d000', 'P1_d090', 'P1_d180', 'P1_d270', 'P2_d000',
-            'P2_d090', 'P2_d180', 'P2_d270', 'P3_d000', 'P3_d090', 'P3_d180', 'P3_d270', 'P4_d000', 'P4_d090',
-            'P4_d180', 'P4_d270', 'P5_d000', 'P5_d090', 'P5_d180', 'P6_d000', 'P6_d090', 'P6_d270']
+# 建立 class 名稱陣列
+cls_list = ['A-000', 'A-180', 'B-000', 'B-180', 'C-090', 'D-000', 'D-090', 'D-180', 'D-270', 'E-000', 'E-270', 'F-000',
+            'F-180', 'G-000', 'G-180', 'H-000', 'H-180', 'I-180', 'I-270', 'J-090']
 
 # 辨識每一張圖
 for f in files:
