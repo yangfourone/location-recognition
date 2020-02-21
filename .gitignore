@@ -3,6 +3,7 @@
 .DS_Store
 pyvenv.cfg
 
+get_ip.py
 dataset
 Include
 Instructions

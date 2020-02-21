@@ -2,6 +2,8 @@ import base64
 import os
 import os.path
 import numpy as np
+import sys
+import subprocess
 from flask import Flask, jsonify, request
 from tensorflow.python.keras.models import load_model
 from tensorflow.python.keras.preprocessing import image
@@ -55,4 +57,5 @@ def recognition(path):
         print('    {:.3f}  {}'.format(pred[i], cls_list[i]))
 
 
-app.run(host='140.118.122.145', port=5000, debug=True)
+ip = subprocess.check_output([sys.executable, "get_ip.py"]).decode()
+app.run(host=ip, port=5000, debug=True)
