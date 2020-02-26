@@ -15,6 +15,10 @@ app = Flask(__name__)
 # 建立 class 名稱陣列
 cls_list = ['A-000', 'A-180', 'B-000', 'B-180', 'C-090', 'D-000', 'D-090', 'D-180', 'D-270', 'E-000', 'E-270', 'F-000',
             'F-180', 'G-000', 'G-180', 'H-000', 'H-180', 'I-180', 'I-270', 'J-090']
+chinese_list = ['背對舊實驗室門前', '面對舊實驗室門前', '瑞光門前面對飲水機', '瑞光門前背對飲水機', '電梯前背對窗戶',
+                '面對飲水機', '飲水機前面對牆壁', '背對飲水機', '飲水機前面對窗戶', '長走廊靠飲水機端', '長走廊面對窗戶',
+                '長廊中後段面前', '長廊中後段面後', '長廊中段面前', '長廊中段面後', '長廊中前段面前', '長廊中前段面後',
+                '長廊前段面後', '長廊前段面窗', '煥宗門前面鏡子']
 
 
 @app.route('/get-test', endpoint='get-test')
@@ -66,9 +70,9 @@ def recognition(path):
     top_index = predict.argsort()[::-1][:2]
     print(path)
     for index in top_index:
-        print('    {:.3f}  {}'.format(predict[index], cls_list[index]))
+        print('    {:.3f}  {}  {}'.format(predict[index], cls_list[index], chinese_list[index]))
 
-    return cls_list[top_index[0]]
+    return chinese_list[top_index[0]]
 
 
 ip = subprocess.check_output([sys.executable, 'get_ip.py']).decode()
