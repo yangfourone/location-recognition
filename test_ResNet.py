@@ -4,12 +4,18 @@ import sys
 import os.path
 import numpy as np
 
+# 宣告計算正確率之參數
+groundTruth = []
+total = 0
+correct = 0
+
 # 從參數讀取圖檔路徑
 files = []
 path = sys.argv[1:]
 fileName = os.listdir(path[0])
 for name in fileName:
     files.append(path[0] + '/' + name)
+    groundTruth.append((name[0:5]).replace('.jpg', ''))
 
 # 載入訓練好的模型
 net = load_model('model/EE7F_model-resnet50-final.h5')
@@ -25,8 +31,17 @@ for f in files:
         continue
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
-    pred = net.predict(x)[0]
-    top_inds = pred.argsort()[::-1][:5]
+    predict = net.predict(x)[0]
+    top_index = predict.argsort()[::-1][:3]
+    # 顯示預測結果
     print(f)
-    for i in top_inds:
-        print('    {:.3f}  {}'.format(pred[i], cls_list[i]))
+    for index in top_index:
+        print('    {:.3f}  {}'.format(predict[index], cls_list[index]))
+    # 計算正確率
+    if cls_list[top_index[0]] == groundTruth[total]:
+        correct += 1
+    total += 1
+
+# cd to 'dataset/test' and 'rm .DS_Store'
+print('\ntotal: ' + str(total) + ', correct: ' + str(correct))
+print('Rate: ' + str((correct/total)*100) + '%\n')
