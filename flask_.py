@@ -64,7 +64,7 @@ def recognition(predict_input):
 
 @app.route('/recognize-initial', endpoint='recognize-initial')
 def recognize_initial():
-    path = 'dataset/test/initial.jpg'
+    path = 'initial/initial.jpg'
     predict_input = pre_process_image(path)
     with graph.as_default():
         result = recognition(predict_input)

@@ -59,7 +59,7 @@ def recognition(predict_input):
 def recognize_initial():
     global model
     model = load_model('model/EE7F_model-vgg16-final.h5')
-    path = 'dataset/test/initial.jpg'
+    path = 'initial/initial.jpg'
     predict_input = pre_process_image(path)
     result = recognition(predict_input)
     clear_session()
