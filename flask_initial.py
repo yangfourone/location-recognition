@@ -24,13 +24,6 @@ chinese_list = ['背對舊實驗室門前', '面對舊實驗室門前', '瑞光�
                 '長廊前段面後', '長廊前段面窗', '煥宗門前面鏡子']
 
 
-def load_our_model():
-    global model
-    global graph
-    model = load_model('model/EE7F_model-vgg16-final.h5')
-    graph = tf.get_default_graph()
-
-
 def save_image(current_time):
     path = 'dataset/test/user_' + str(current_time) + '.jpg'
     file = dict(request.form)
@@ -64,10 +57,12 @@ def recognition(predict_input):
 
 @app.route('/recognize-initial', endpoint='recognize-initial')
 def recognize_initial():
+    global model
+    model = load_model('model/EE7F_model-vgg16-final.h5')
     path = 'dataset/test/initial.jpg'
     predict_input = pre_process_image(path)
-    with graph.as_default():
-        result = recognition(predict_input)
+    result = recognition(predict_input)
+    clear_session()
     return jsonify(result)
 
 
@@ -79,6 +74,9 @@ def post_test():
 @app.route('/recognize', methods=['POST'], endpoint='recognize')
 def recognize():
     if request.method == 'POST':
+        global model
+        model = load_model('model/EE7F_model-vgg16-final.h5')
+
         # get current time
         current_time = get_current_time()
 
@@ -89,16 +87,17 @@ def recognize():
         predict_input = pre_process_image(path)
 
         # recognition
-        with graph.as_default():
-            result = recognition(predict_input)
+        result = recognition(predict_input)
 
         # delete file
         os.remove(path)
 
+        # clear_session
+        clear_session()
+
         return jsonify(result)
 
 
-load_our_model()
 ip = subprocess.check_output([sys.executable, 'get_ip.py']).decode()
 app.run(host=ip, port=5000, debug=True)
 
