@@ -15,14 +15,19 @@ path = sys.argv[1:]
 fileName = os.listdir(path[0])
 for name in fileName:
     files.append(path[0] + '/' + name)
-    groundTruth.append((name[0:5]).replace('.jpg', ''))
+    groundTruth.append((name[0:11]).replace('.jpg', ''))
 
 # 載入訓練好的模型
-net = load_model('model/EE7F_model-resnet50-final.h5')
+# net = load_model('model/EE7F_model-resnet50-final.h5')
+net = load_model('model/EE7F+8F_model-resnet50-final.h5')
 
 # 建立 class 名稱陣列
-cls_list = ['A-000', 'A-180', 'B-000', 'B-180', 'C-090', 'D-000', 'D-090', 'D-180', 'D-270', 'E-000', 'E-270', 'F-000',
-            'F-180', 'G-000', 'G-180', 'H-000', 'H-180', 'I-180', 'I-270', 'J-090']
+cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C-000', 'EE-7F-C-180', 'EE-7F-D-090',
+            'EE-7F-E-000', 'EE-7F-E-090', 'EE-7F-E-180', 'EE-7F-E-270', 'EE-7F-F-000', 'EE-7F-F-270', 'EE-7F-G-000',
+            'EE-7F-G-180', 'EE-7F-H-000', 'EE-7F-H-180', 'EE-7F-I-000', 'EE-7F-I-180', 'EE-7F-J-180', 'EE-7F-J-270',
+            'EE-7F-K-090', 'EE-8F-A-000', 'EE-8F-A-180', 'EE-8F-B-090', 'EE-8F-C-000', 'EE-8F-C-180', 'EE-8F-C-270',
+            'EE-8F-D-000', 'EE-8F-D-180', 'EE-8F-E-000', 'EE-8F-E-180', 'EE-8F-F-000', 'EE-8F-F-180', 'EE-8F-G-180',
+            'EE-8F-G-270']
 
 # 辨識每一張圖
 for f in files:

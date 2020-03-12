@@ -15,13 +15,20 @@ app = Flask(__name__)
 model = None
 
 # 建立 class 名稱陣列
-cls_list = ['A-000', 'A-180', 'B-000', 'B-180', 'C-090', 'D-000', 'D-090', 'D-180', 'D-270', 'E-000', 'E-270', 'F-000',
-            'F-180', 'G-000', 'G-180', 'H-000', 'H-180', 'I-180', 'I-270', 'J-090']
+cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C-000', 'EE-7F-C-180', 'EE-7F-D-090',
+            'EE-7F-E-000', 'EE-7F-E-090', 'EE-7F-E-180', 'EE-7F-E-270', 'EE-7F-F-000', 'EE-7F-F-270', 'EE-7F-G-000',
+            'EE-7F-G-180', 'EE-7F-H-000', 'EE-7F-H-180', 'EE-7F-I-000', 'EE-7F-I-180', 'EE-7F-J-180', 'EE-7F-J-270',
+            'EE-7F-K-090', 'EE-8F-A-000', 'EE-8F-A-180', 'EE-8F-B-090', 'EE-8F-C-000', 'EE-8F-C-180', 'EE-8F-C-270',
+            'EE-8F-D-000', 'EE-8F-D-180', 'EE-8F-E-000', 'EE-8F-E-180', 'EE-8F-F-000', 'EE-8F-F-180', 'EE-8F-G-180',
+            'EE-8F-G-270']
 
-chinese_list = ['背對舊實驗室門前', '面對舊實驗室門前', '瑞光門前面對飲水機', '瑞光門前背對飲水機', '電梯前背對窗戶',
-                '面對飲水機', '飲水機前面對牆壁', '背對飲水機', '飲水機前面對窗戶', '長走廊靠飲水機端', '長走廊面對窗戶',
-                '長廊中後段面前', '長廊中後段面後', '長廊中段面前', '長廊中段面後', '長廊中前段面前', '長廊中前段面後',
-                '長廊前段面後', '長廊前段面窗', '煥宗門前面鏡子']
+chinese_list = ['7F_背對舊實驗室門前', '7F_面對舊實驗室門前', '7F_瑞光門前面對飲水機', '7F_瑞光門前背對飲水機',
+                '7F_樓梯面對飲水機', '7F_樓梯面對舊實驗室', '7F_電梯前背對窗戶', '7F_面對飲水機', '7F_飲水機前面對牆壁',
+                '7F_背對飲水機', '7F_飲水機前面對窗戶', '7F_長走廊靠飲水機端', '7F_長走廊面對窗戶', '7F_長廊中後段面前',
+                '7F_長廊中後段面後', '7F_長廊中段面前', '7F_長廊中段面後', '7F_長廊中前段面前', '7F_長廊中前段面後',
+                '7F_長廊前段面後', '7F_長廊前段面窗', '7F_煥宗門前面鏡子', '8F_樓梯面前', '8F_樓梯面後', '8F_電梯前面',
+                '8F_飲水機面前', '8F_飲水機面後', '8F_背對飲水機', '8F_化學檯子面前', '8F_化學檯子面後', '8F_瑞光LAB面前',
+                '8F_瑞光LAB面後', '8F_伯奇辦公室面前', '8F_伯奇辦公室面後', '8F_長走廊前段面後', '8F_長走廊前段面樓梯']
 
 
 def save_image(current_time):
@@ -58,7 +65,7 @@ def recognition(predict_input):
 @app.route('/recognize-initial', endpoint='recognize-initial')
 def recognize_initial():
     global model
-    model = load_model('model/EE7F_model-vgg16-final.h5')
+    model = load_model('model/EE7F+8F_model-resnet50-final.h5')
     path = 'initial/initial.jpg'
     predict_input = pre_process_image(path)
     result = recognition(predict_input)
@@ -74,9 +81,6 @@ def post_test():
 @app.route('/recognize', methods=['POST'], endpoint='recognize')
 def recognize():
     if request.method == 'POST':
-        global model
-        model = load_model('model/EE7F_model-vgg16-final.h5')
-
         # get current time
         current_time = get_current_time()
 
