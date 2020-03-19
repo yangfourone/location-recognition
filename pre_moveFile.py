@@ -1,9 +1,6 @@
 import os
 import shutil
-
-# 影片的來源資料夾
-# video folder name
-videoSource = 'video'
+import math
 
 # 路徑：從哪邊移動
 # move from
@@ -15,20 +12,24 @@ moveTo = 'dataset/valid'
 
 # 總共有幾個影片檔
 # total files count in folder
-fileAmount = len([name for name in os.listdir(videoSource) if os.path.isfile(os.path.join(videoSource, name))])
+fileAmount = len([name for name in os.listdir(moveFrom) if os.path.isfile(os.path.join(moveFrom, name))])
 
 # 所有影片的名字
 # all files name in folder
-fileName = os.listdir(videoSource)
+fileName = os.listdir(moveFrom)
 
 # 多少比例的資料會被移動
 # how much proportion for testing data
 rate = 0.3
 
+# 影片的主要分類名稱總共有幾個字母
+# numbers of characters in video name
+videoTitleCharacterNum = 11
+
 for file in fileName:
-    fileNameSplit = file.split('.')
-    moveFromDir = moveFrom + '/' + fileNameSplit[0]
-    moveToDir = moveTo + '/' + fileNameSplit[0]
+    targetFolder = file[0:videoTitleCharacterNum]
+    moveFromDir = moveFrom + '/' + targetFolder
+    moveToDir = moveTo + '/' + targetFolder
 
     # 如果沒有相對應的資料夾就創造新資料夾
     # make a new folder if there is no correct folder
@@ -45,5 +46,5 @@ for file in fileName:
     for index in range(testingAmount):
         # 平均分散的移動
         # moving average
-        shutil.move(moveFrom + '/' + fileNameSplit[0] + '/image_' + str(round((index + 1)/rate)) + '.jpg',
-                    moveTo + '/' + fileNameSplit[0] + '/image_' + str(round((index + 1)/rate)) + '.jpg')
+        shutil.move(moveFromDir + '/image_' + str(math.floor((index + 1)/rate)) + '.jpg',
+                    moveToDir + '/image_' + str(math.floor((index + 1)/rate)) + '.jpg')
