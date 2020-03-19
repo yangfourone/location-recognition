@@ -15,7 +15,7 @@ frameRate = 5
 
 # 影片的主要分類名稱總共有幾個字母
 # numbers of characters in video name
-videoTitleCharacterNum = 4
+videoTitleCharacterNum = 11
 
 # 總共有幾個影片檔
 # total files count in folder
