@@ -52,6 +52,8 @@ def getFrame():
 
 
 for file in fileName:
+    print(file + ' is processing now...')
+
     # 建立影片分類的資料夾名稱, 例如: Apple.MOV, Apple-1.MOV, Apple-2.MOV 都會被寫入在 Apple 的資料夾內
     # make a folder by video main category, e.g. Apple.MOV, Apple-1.MOV, Apple-2.MOV will be writen in folder Apple
     targetFolder = file[0:videoTitleCharacterNum]
