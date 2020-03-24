@@ -61,12 +61,20 @@ def get_current_time():
 
 
 def recognition(predict_input):
+    response = {}
     predict = model.predict(predict_input)[0]
     top_index = predict.argsort()[::-1][:5]
     for index in top_index:
         print('    {:.3f}  {}  {}'.format(predict[index], cls_list[index], chinese_list[index]))
+        class_split = cls_list[index].split('-')
+        content = {'building': class_split[0],
+                   'floor': class_split[1],
+                   'position': class_split[2],
+                   'degree': class_split[3],
+                   'chinese': chinese_list[index]}
+        response.update(content)
 
-    return cls_list[top_index[0]] + '-' + chinese_list[top_index[0]]
+    return response
 
 
 @app.route('/recognize-initial', endpoint='recognize-initial')
@@ -102,7 +110,7 @@ def recognize():
         # delete file
         os.remove(path)
 
-        return jsonify(result)
+        return result
 
 
 load_our_model()

@@ -39,7 +39,7 @@ for f in files:
     predict = net.predict(x)[0]
     top_index = predict.argsort()[::-1][:3]
     # 顯示預測結果
-    print(f)
+    print('\n' + f)
     for index in top_index:
         print('    {:.3f}  {}'.format(predict[index], cls_list[index]))
     # 計算正確率
