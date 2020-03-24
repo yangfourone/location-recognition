@@ -61,7 +61,7 @@ def get_current_time():
 
 
 def recognition(predict_input):
-    response = {}
+    response = []
     predict = model.predict(predict_input)[0]
     top_index = predict.argsort()[::-1][:5]
     for index in top_index:
@@ -72,7 +72,7 @@ def recognition(predict_input):
                    'position': class_split[2],
                    'degree': class_split[3],
                    'chinese': chinese_list[index]}
-        response.update(content)
+        response.append(content)
 
     return response
 
@@ -110,7 +110,7 @@ def recognize():
         # delete file
         os.remove(path)
 
-        return result
+        return jsonify(result)
 
 
 load_our_model()
