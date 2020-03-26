@@ -34,7 +34,7 @@ chinese_list = ['7F_背對舊實驗室門前', '7F_面對舊實驗室門前', '7
 def load_our_model():
     global model
     global graph
-    model = load_model('model/EE7F+8F_model-vgg16-final.h5')
+    model = load_model('model/EE7F+8F_model-inceptionV3-final.h5')
     graph = tf.get_default_graph()
 
 

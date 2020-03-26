@@ -73,12 +73,12 @@ def recognition(predict_input):
 @app.route('/recognize-initial', endpoint='recognize-initial')
 def recognize_initial():
     global model
-    model = load_model('model/EE7F+8F_model-resnet50-final.h5')
+    model = load_model('model/EE7F+8F_model-inceptionV3-final.h5')
     path = 'initial/initial.jpg'
     predict_input = pre_process_image(path)
     result = recognition(predict_input)
     clear_session()
-    return result
+    return jsonify(result)
 
 
 @app.route('/post-test', methods=['GET', 'POST'], endpoint='post-test')
