@@ -11,7 +11,7 @@ saveFolder = 'dataset/train'
 
 # 圖片擷取的頻率 (秒)
 # fetch frequency (second)
-frameRate = 5
+frameRate = 3
 
 # 影片的主要分類名稱總共有幾個字母
 # numbers of characters in video name

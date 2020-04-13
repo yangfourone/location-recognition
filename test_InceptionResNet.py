@@ -18,7 +18,7 @@ for name in fileName:
     groundTruth.append((name[0:11]).replace('.jpg', ''))
 
 # 載入訓練好的模型
-net = load_model('model/EE7F_model-inceptionV3-final.h5')
+net = load_model('model/EE7F_model-inceptionResNetV2-final.h5')
 
 # 建立 class 名稱陣列
 # cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C-000', 'EE-7F-C-180', 'EE-7F-D-090',
