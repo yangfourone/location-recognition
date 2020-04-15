@@ -15,7 +15,7 @@ DATASET_PATH = 'dataset'
 IMAGE_SIZE = (224, 224)
 
 # 影像類別數
-NUM_CLASSES = 22
+NUM_CLASSES = 36
 
 # 若 GPU 記憶體不足，可調降 batch size 或凍結更多層網路
 BATCH_SIZE = 8
@@ -27,7 +27,7 @@ FREEZE_LAYERS = 0
 NUM_EPOCHS = 20
 
 # 模型輸出儲存的檔案
-WEIGHTS_FINAL = 'model/EE7F_model-inceptionResNetV2-final.h5'
+WEIGHTS_FINAL = 'model/EE7F+8F_model-inceptionResNetV2-final.h5'
 
 # 透過 data augmentation 產生訓練與驗證用的影像資料
 train_datagen = ImageDataGenerator(rotation_range=40,
