@@ -23,7 +23,7 @@ BATCH_SIZE = 8
 FREEZE_LAYERS = 0
 
 # Epoch 數
-NUM_EPOCHS = 20
+NUM_EPOCHS = 15
 
 # 模型輸出儲存的檔案
 WEIGHTS_FINAL = 'model/EE7F+8F_model-vgg16-final.h5'

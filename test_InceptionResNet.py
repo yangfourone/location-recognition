@@ -40,11 +40,6 @@ cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C
             'EE-8F-D-000', 'EE-8F-D-180', 'EE-8F-E-000', 'EE-8F-E-180', 'EE-8F-F-000', 'EE-8F-F-180', 'EE-8F-G-180',
             'EE-8F-G-270']
 
-# cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C-000', 'EE-7F-C-180', 'EE-7F-D-090',
-#             'EE-7F-E-000', 'EE-7F-E-090', 'EE-7F-E-180', 'EE-7F-E-270', 'EE-7F-F-000', 'EE-7F-F-270', 'EE-7F-G-000',
-#             'EE-7F-G-180', 'EE-7F-H-000', 'EE-7F-H-180', 'EE-7F-I-000', 'EE-7F-I-180', 'EE-7F-J-180', 'EE-7F-J-270',
-#             'EE-7F-K-090']
-
 # 辨識每一張圖
 for f in files:
     img = image.load_img(f, target_size=(224, 224))
