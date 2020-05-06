@@ -72,7 +72,7 @@ def recognition(predict_input):
 @app.route('/recognize-initial', endpoint='recognize-initial')
 def recognize_initial():
     global model
-    model = load_model('model/EE7F+8F_model-inceptionV3-final.h5')
+    model = load_model('model/EE7F+8F_model-inceptionResNetV2-final.h5')
     path = 'initial/initial.jpg'
     predict_input = pre_process_image(path)
     result = recognition(predict_input)
