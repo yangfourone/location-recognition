@@ -21,14 +21,6 @@ cls_list = ['EE-7F-A-000', 'EE-7F-A-180', 'EE-7F-B-000', 'EE-7F-B-180', 'EE-7F-C
             'EE-8F-D-000', 'EE-8F-D-180', 'EE-8F-E-000', 'EE-8F-E-180', 'EE-8F-F-000', 'EE-8F-F-180', 'EE-8F-G-180',
             'EE-8F-G-270']
 
-chinese_list = ['7F_背對舊實驗室門前', '7F_面對舊實驗室門前', '7F_瑞光門前面對飲水機', '7F_瑞光門前背對飲水機',
-                '7F_樓梯面對飲水機', '7F_樓梯面對舊實驗室', '7F_電梯前背對窗戶', '7F_面對飲水機', '7F_飲水機前面對牆壁',
-                '7F_背對飲水機', '7F_飲水機前面對窗戶', '7F_長走廊靠飲水機端', '7F_長走廊面對窗戶', '7F_長廊中後段面前',
-                '7F_長廊中後段面後', '7F_長廊中段面前', '7F_長廊中段面後', '7F_長廊中前段面前', '7F_長廊中前段面後',
-                '7F_長廊前段面後', '7F_長廊前段面窗', '7F_煥宗門前面鏡子', '8F_樓梯面前', '8F_樓梯面後', '8F_電梯前面',
-                '8F_飲水機面前', '8F_飲水機面後', '8F_背對飲水機', '8F_化學檯子面前', '8F_化學檯子面後', '8F_瑞光LAB面前',
-                '8F_瑞光LAB面後', '8F_伯奇辦公室面前', '8F_伯奇辦公室面後', '8F_長走廊前段面後', '8F_長走廊前段面樓梯']
-
 
 def save_image(current_time):
     path = 'dataset/test/user_' + str(current_time) + '.jpg'
@@ -57,13 +49,12 @@ def recognition(predict_input):
     predict = model.predict(predict_input)[0]
     top_index = predict.argsort()[::-1][:5]
     for index in top_index:
-        print('    {:.3f}  {}  {}'.format(predict[index], cls_list[index], chinese_list[index]))
+        print('    {:.3f}  {}'.format(predict[index], cls_list[index]))
         class_split = cls_list[index].split('-')
         content = {'building': class_split[0],
                    'floor': class_split[1],
                    'position': class_split[2],
-                   'degree': class_split[3],
-                   'chinese': chinese_list[index]}
+                   'degree': class_split[3]}
         response.append(content)
 
     return response

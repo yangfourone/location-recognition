@@ -1,1 +1,1 @@
-image processing using VGG_Net and ResNet
+image processing using Inception ResNet V2, Inception V3, VGG_Net and ResNet
